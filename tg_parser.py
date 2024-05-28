@@ -6,9 +6,8 @@ import pandas as pd
 
 
 INTERVAL = 3600 * 24 * 7 * 4 # 1 month in seconds
-GROUPLIST = 'grouplist.txt'
-FOLDER1 = 'groups\\'
-FOLDER2 = 'grouplst\\'
+FOLDER1 = 'groups\\'   # folder with group names for each news-topic
+FOLDER2 = 'grouplst\\' # folder with news for each telegram-group
 GROUPS = {}
 
 
@@ -63,7 +62,6 @@ def main():
     with open('parsed_news_info.csv', 'w', encoding='utf-8') as f:
         f.write('\n'.join(res))
 
-    # df = pd.read_json('parsed_news_info.csv', lines=True)
     df = pd.read_json('parsed_news_info.csv', lines = True)
     df = df[(df.description.str.len() > 100) &
             (df.description.str.len() < 1000)] # remove short posts
